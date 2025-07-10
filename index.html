@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แม่หมอ AI พยากรณ์แม่นที่สุด</title>
+  <style>
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(#fce4ec, #f8bbd0);
+      margin: 0;
+      padding: 0;
+      color: #4a148c;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+    main {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .result {
+      margin-top: 2rem;
+      background: #f3e5f5;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+    }
+    @media screen and (max-width: 480px) {
+      header, main {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 1.25rem;
+      }
+      input, select, button {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔮 แม่หมอ AI พยากรณ์แม่นที่สุดในสามโลก 🔮</h1>
+    <p>กรอกวันเกิด แล้วปล่อยให้จักรวาลบอกโชคของคุณวันนี้!</p>
+  </header>
+  <main>
+    <label for="birthday">วันเกิดของคุณ:</label>
+    <input type="date" id="birthday">
+    <button onclick="predictFate()">ดูดวงวันนี้</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+  </main>
+
+  <script>
+    const fortunes = [
+      "วันนี้โชคดีเรื่องเงิน อย่าลังเลหากมีโอกาสลงทุน!",
+      "ระวังคำพูด อาจทำให้เกิดความเข้าใจผิดกับคนรอบข้าง",
+      "ดวงความรักพุ่งแรง มีโอกาสพบเจอคนถูกใจ",
+      "สุขภาพอาจมีปัญหาเล็กน้อย อย่าลืมพักผ่อน",
+      "วันนี้เหมาะกับการเริ่มต้นสิ่งใหม่ หรือวางแผนอนาคต",
+      "มีเกณฑ์ได้รับข่าวดีจากคนไกล หรืองานที่รอคอย",
+      "ระวังการตัดสินใจผิดพลาดจากอารมณ์ชั่ววูบ"
+    ];
+
+    function predictFate() {
+      const birthday = document.getElementById("birthday").value;
+      const resultDiv = document.getElementById("result");
+      if (!birthday) {
+        resultDiv.innerHTML = "กรุณากรอกวันเกิดก่อนนะจ๊ะ";
+        resultDiv.style.display = 'block';
+        return;
+      }
+      // ใช้วันที่เป็น seed เลือกคำทำนาย
+      const seed = new Date(birthday).getDate() + new Date().getDate();
+      const fate = fortunes[seed % fortunes.length];
+      resultDiv.innerHTML = `<strong>✨ คำทำนายของคุณ:</strong><br>${fate}`;
+      resultDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
